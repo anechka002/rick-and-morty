@@ -6,20 +6,22 @@ import { Character } from '../../features/character/ui/Character';
 export const CharacterPage = () => {
   const [page, setPage] = useState(1);
 
-  const { data } = useGetCharacterQuery({ page });
+  const { data, isError } = useGetCharacterQuery({ page });
 
   const nextPageHandler = () => {
-    if (data?.info?.next) {
+    if (data?.info?.next && !isError) {
       // Проверяем, есть ли следующая страница
       setPage((prev) => prev + 1);
-    }
+    } 
+    return
   };
 
   const prevPageHandler = () => {
-    if (data?.info?.prev) {
+    if (data?.info?.prev && !isError) {
       // Проверяем, есть ли предыд
       setPage((prev) => prev - 1);
     }
+    return
   };
 
   return (
