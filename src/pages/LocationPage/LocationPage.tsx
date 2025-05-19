@@ -1,9 +1,9 @@
 import { Title } from "../../common/components/Title/Title"
-import { useGetAllLocationQuery } from "../../features/character/api/characterApi"
+import { useGetAllLocationsQuery } from "../../features/character/api/characterApi"
 import { LocationCard } from "../../features/location/ui/LocationCard"
 
 export const LocationPage = () => {
-  const {data} = useGetAllLocationQuery()
+  const {data} = useGetAllLocationsQuery()
 
   return (
     <div className="container mx-auto mb-12">

@@ -1,5 +1,5 @@
 import { baseApi } from '../../../app/baseApi';
-import type { CharacterType, LocationType, ServerResponse } from './characterApi.type';
+import type { CharacterType, EpisodeType, LocationType, ServerResponse } from './characterApi.type';
 
 export const characterApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -16,14 +16,20 @@ export const characterApi = baseApi.injectEndpoints({
       }),
       providesTags: (_result, _error, id) => [{ type: 'Character', id }],
     }),
-    getAllLocation: builder.query<ServerResponse<LocationType>, void>({
+    getAllLocations: builder.query<ServerResponse<LocationType>, void>({
       query: () => ({
         url: `/location`,
       }),
       providesTags: ['Location'],
     }),
+    getAllEpisodes: builder.query<ServerResponse<EpisodeType>, void>({
+      query: () => ({
+        url: `/episode`,
+      }),
+      providesTags: ['Episode'],
+    }),
     
   }),
 });
 
-export const { useGetAllCharactersQuery, useGetCharacterDetailsByIdQuery, useGetAllLocationQuery } = characterApi;
+export const { useGetAllCharactersQuery, useGetCharacterDetailsByIdQuery, useGetAllLocationsQuery, useGetAllEpisodesQuery } = characterApi; 

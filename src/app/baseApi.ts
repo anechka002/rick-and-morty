@@ -3,7 +3,7 @@ import { handleError } from "../common/utils/handleError"
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  tagTypes: ["Character", "Location"],
+  tagTypes: ["Character", "Location", "Episode"],
   baseQuery: async (args, api, extraOptions) => {
     // await new Promise(resolve => setTimeout(resolve, 3000))
 

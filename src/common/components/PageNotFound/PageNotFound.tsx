@@ -1,11 +1,13 @@
-import { Navigate } from 'react-router'
+import { useNavigate } from 'react-router'
 import { Button } from '../Button/Button'
 import { PATH } from '../../routing/Routing'
 
 export const PageNotFound = () => {
 
+  const navigate = useNavigate()
+
   const handleGoMainPage = () => {
-    return <Navigate to={PATH.CHARACTERS}/>
+    navigate(PATH.HOME)
   }
 
   return (
