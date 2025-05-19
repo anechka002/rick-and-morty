@@ -1,6 +1,6 @@
-export interface ServerResponse {
+export interface ServerResponse<T> {
   info: Info
-  results: CharacterType[]
+  results: T[]
 }
 
 export interface Info {
@@ -35,7 +35,13 @@ export interface Location {
   url: string
 }
 
-
-
-
+export interface LocationType {
+  id: number;
+  name: string;
+  type: string;
+  dimension: string;
+  residents: string[];
+  url: string;
+  created: string;
+}
 

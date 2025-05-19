@@ -1,9 +1,9 @@
 import { baseApi } from '../../../app/baseApi';
-import type { CharacterType, ServerResponse } from './characterApi.type';
+import type { CharacterType, LocationType, ServerResponse } from './characterApi.type';
 
 export const characterApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getAllCharacters: builder.query<ServerResponse, { page: number, name: string }>({
+    getAllCharacters: builder.query<ServerResponse<CharacterType>, { page: number, name: string }>({
       query: (params) => ({
         url: '/character',
         params: { ...params },
@@ -16,14 +16,14 @@ export const characterApi = baseApi.injectEndpoints({
       }),
       providesTags: (_result, _error, id) => [{ type: 'Character', id }],
     }),
-    getAllLocation: builder.query<any, void>({
+    getAllLocation: builder.query<ServerResponse<LocationType>, void>({
       query: () => ({
         url: `/location`,
       }),
-      // providesTags: (_result, _error, id) => [{ type: 'Character', id }],
+      providesTags: ['Location'],
     }),
     
   }),
 });
 
-export const { useGetAllCharactersQuery, useGetCharacterDetailsByIdQuery, useGetAllLocationQuery } = characterApi;  // eslint-disable-line @typescript-eslint/no-unused
+export const { useGetAllCharactersQuery, useGetCharacterDetailsByIdQuery, useGetAllLocationQuery } = characterApi;

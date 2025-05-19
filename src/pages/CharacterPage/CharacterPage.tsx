@@ -3,6 +3,7 @@ import { Button } from '../../common/components/Button/Button';
 import { CharacterCard } from '../../features/character/ui/CharacterCard';
 import { useDebounce } from '../../common/hooks/useDebounce';
 import { useGetAllCharactersQuery } from '../../features/character/api/characterApi';
+import { Title } from '../../common/components/Title/Title';
 
 export const CharacterPage = () => {
   const [page, setPage] = useState(1);
@@ -31,9 +32,7 @@ export const CharacterPage = () => {
 
   return (
     <div className="container mx-auto mb-12">
-      <h1 className="m-0 text-[#1e293b] font-extrabold text-[70px] text-center pt-12">
-        CharacterPage
-      </h1>
+      <Title>CharacterPage</Title>
 
       <input 
         type="text" 
