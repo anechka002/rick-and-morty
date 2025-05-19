@@ -8,7 +8,7 @@ type Props = NavLinkProps & {
 export const NavButton = ({children, to, className, ...rest}: Props) => {
   return (
     <NavLink 
-      className={`text-center duration-300 ${className}`} 
+      className={({isActive}) =>`text-center duration-300 ${className} ${isActive ? 'font-bold' : ''}`} 
       to={to}
       {...rest}
     >

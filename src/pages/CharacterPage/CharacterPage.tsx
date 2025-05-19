@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Button } from '../../common/components/Button/Button';
-import { useGetCharacterQuery } from '../../features/character/api/characterApi';
-import { Character } from '../../features/character/ui/Character';
+import { CharacterCard } from '../../features/character/ui/CharacterCard';
 import { useDebounce } from '../../common/hooks/useDebounce';
+import { useGetAllCharactersQuery } from '../../features/character/api/characterApi';
 
 export const CharacterPage = () => {
   const [page, setPage] = useState(1);
@@ -11,7 +11,7 @@ export const CharacterPage = () => {
 
   const debounced = useDebounce(search)
 
-  const { data, isError } = useGetCharacterQuery( { page,  name: debounced }, { refetchOnFocus: true });
+  const { data, isError } = useGetAllCharactersQuery( { page,  name: debounced }, { refetchOnFocus: true });
 
   const nextPageHandler = () => {
     if (data?.info?.next && !isError) {
@@ -47,7 +47,7 @@ export const CharacterPage = () => {
 
       <div className="flex flex-wrap gap-2">
         {data?.results?.map((item) => {
-          return <Character key={item.id} item={item} />;
+          return <CharacterCard key={item.id} data={item} />;
         })}
       </div>
 
