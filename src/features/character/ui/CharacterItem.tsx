@@ -2,6 +2,7 @@ import { Navigate, useNavigate, useParams } from 'react-router';
 import { PATH } from '../../../common/routing/Routing';
 import { useGetCharacterDetailsByIdQuery } from '../api/characterApi';
 import { Button } from '../../../common/components/Button/Button';
+import { getStatusClassName } from '../../../common/utils/getStatusClassName';
 
 export const CharacterItem = () => {
   const { id } = useParams();
@@ -11,33 +12,13 @@ export const CharacterItem = () => {
     Number(id || null)
   );
 
-  if (!character) {
-    return <h1>Empty data</h1>
-  }
+  if (!character) return null
 
   if (error) return <Navigate to={PATH.CHARACTERS} />;
 
   const handleGoBack = () => {
     navigate(PATH.CHARACTERS);
   };
-
-  const getStatusClassName = (status: string) => {
-    let characterStatus;
-    switch (status) {
-      case 'Alive':
-        characterStatus = 'bg-green-500'
-        break;
-      case 'Dead':
-        characterStatus = 'bg-red-600'
-        break;
-      case 'unknown':
-        characterStatus = 'bg-slate-200'
-        break;
-      default:
-        characterStatus = ''
-    }
-    return `h-2.5 w-2.5 mr-2.5 rounded-full ${characterStatus}`;
-  }
 
   return (
     <div className="container mx-auto mb-12">
@@ -53,7 +34,7 @@ export const CharacterItem = () => {
           />
           <div className="m-5">
             <div className="flex items-center mb-5 font-bold text-lg">
-              <div className={getStatusClassName(character?.status)}>
+              <div className={getStatusClassName(character?.status || '')}>
               </div>
               <div>
                 {character?.status} - {character?.species}
